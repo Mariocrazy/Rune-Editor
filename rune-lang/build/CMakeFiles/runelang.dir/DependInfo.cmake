@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/GhostSystem.cpp" "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/runelang.dir/src/GhostSystem.cpp.o"
+  "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/GhostTerminal.cpp" "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/runelang.dir/src/GhostTerminal.cpp.o"
   "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/RuneParser.cpp" "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/runelang.dir/src/RuneParser.cpp.o"
   "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/RuneSystem.cpp" "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/runelang.dir/src/RuneSystem.cpp.o"
   )

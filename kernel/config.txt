@@ -1,0 +1,10 @@
+# Raspberry Pi Zero W configuration
+kernel=kernel.img
+arm_control=0x200
+disable_commandline_tags=1
+disable_overscan=1
+uart_2ndstage=1
+
+# Force UART as primary console
+enable_uart=1
+core_freq=250

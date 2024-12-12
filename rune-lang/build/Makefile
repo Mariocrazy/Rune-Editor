@@ -130,6 +130,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named ghost_terminal
+
+# Build rule for target.
+ghost_terminal: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ghost_terminal
+.PHONY : ghost_terminal
+
+# fast build rule for target.
+ghost_terminal/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ghost_terminal.dir/build.make CMakeFiles/ghost_terminal.dir/build
+.PHONY : ghost_terminal/fast
+
+#=============================================================================
 # Target rules for targets named rune_test
 
 # Build rule for target.
@@ -181,6 +194,33 @@ src/GhostSystem.s: src/GhostSystem.cpp.s
 src/GhostSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runelang.dir/build.make CMakeFiles/runelang.dir/src/GhostSystem.cpp.s
 .PHONY : src/GhostSystem.cpp.s
+
+src/GhostTerminal.o: src/GhostTerminal.cpp.o
+
+.PHONY : src/GhostTerminal.o
+
+# target to build an object file
+src/GhostTerminal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runelang.dir/build.make CMakeFiles/runelang.dir/src/GhostTerminal.cpp.o
+.PHONY : src/GhostTerminal.cpp.o
+
+src/GhostTerminal.i: src/GhostTerminal.cpp.i
+
+.PHONY : src/GhostTerminal.i
+
+# target to preprocess a source file
+src/GhostTerminal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runelang.dir/build.make CMakeFiles/runelang.dir/src/GhostTerminal.cpp.i
+.PHONY : src/GhostTerminal.cpp.i
+
+src/GhostTerminal.s: src/GhostTerminal.cpp.s
+
+.PHONY : src/GhostTerminal.s
+
+# target to generate assembly for a file
+src/GhostTerminal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runelang.dir/build.make CMakeFiles/runelang.dir/src/GhostTerminal.cpp.s
+.PHONY : src/GhostTerminal.cpp.s
 
 src/RuneParser.o: src/RuneParser.cpp.o
 
@@ -236,6 +276,33 @@ src/RuneSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runelang.dir/build.make CMakeFiles/runelang.dir/src/RuneSystem.cpp.s
 .PHONY : src/RuneSystem.cpp.s
 
+src/ghost_terminal_main.o: src/ghost_terminal_main.cpp.o
+
+.PHONY : src/ghost_terminal_main.o
+
+# target to build an object file
+src/ghost_terminal_main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ghost_terminal.dir/build.make CMakeFiles/ghost_terminal.dir/src/ghost_terminal_main.cpp.o
+.PHONY : src/ghost_terminal_main.cpp.o
+
+src/ghost_terminal_main.i: src/ghost_terminal_main.cpp.i
+
+.PHONY : src/ghost_terminal_main.i
+
+# target to preprocess a source file
+src/ghost_terminal_main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ghost_terminal.dir/build.make CMakeFiles/ghost_terminal.dir/src/ghost_terminal_main.cpp.i
+.PHONY : src/ghost_terminal_main.cpp.i
+
+src/ghost_terminal_main.s: src/ghost_terminal_main.cpp.s
+
+.PHONY : src/ghost_terminal_main.s
+
+# target to generate assembly for a file
+src/ghost_terminal_main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ghost_terminal.dir/build.make CMakeFiles/ghost_terminal.dir/src/ghost_terminal_main.cpp.s
+.PHONY : src/ghost_terminal_main.cpp.s
+
 tests/rune_test.o: tests/rune_test.cpp.o
 
 .PHONY : tests/rune_test.o
@@ -271,17 +338,24 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... ghost_terminal"
 	@echo "... rune_test"
 	@echo "... runelang"
 	@echo "... src/GhostSystem.o"
 	@echo "... src/GhostSystem.i"
 	@echo "... src/GhostSystem.s"
+	@echo "... src/GhostTerminal.o"
+	@echo "... src/GhostTerminal.i"
+	@echo "... src/GhostTerminal.s"
 	@echo "... src/RuneParser.o"
 	@echo "... src/RuneParser.i"
 	@echo "... src/RuneParser.s"
 	@echo "... src/RuneSystem.o"
 	@echo "... src/RuneSystem.i"
 	@echo "... src/RuneSystem.s"
+	@echo "... src/ghost_terminal_main.o"
+	@echo "... src/ghost_terminal_main.i"
+	@echo "... src/ghost_terminal_main.s"
 	@echo "... tests/rune_test.o"
 	@echo "... tests/rune_test.i"
 	@echo "... tests/rune_test.s"

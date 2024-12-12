@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/ghost_terminal.dir/src/ghost_terminal_main.cpp.o -o ghost_terminal  -Wl,-rpath,"/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build" librunelang.so -lpthread 

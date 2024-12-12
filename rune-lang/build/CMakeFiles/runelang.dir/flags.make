@@ -6,5 +6,5 @@ CXX_DEFINES = -Drunelang_EXPORTS
 
 CXX_INCLUDES = -I"/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include"
 
-CXX_FLAGS =  -Wall -Wextra -pthread -fPIC -std=gnu++17
+CXX_FLAGS = -fPIC -Wall -Wextra -std=gnu++17
 

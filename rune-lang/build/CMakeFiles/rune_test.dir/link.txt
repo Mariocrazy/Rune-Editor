@@ -1,1 +1,1 @@
-/usr/bin/c++  -Wall -Wextra -pthread CMakeFiles/rune_test.dir/tests/rune_test.cpp.o -o rune_test  -Wl,-rpath,"/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build" librunelang.so 
+/usr/bin/c++ CMakeFiles/rune_test.dir/tests/rune_test.cpp.o -o rune_test  -Wl,-rpath,"/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build" librunelang.so -lpthread 
