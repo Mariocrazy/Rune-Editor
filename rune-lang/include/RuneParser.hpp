@@ -15,7 +15,22 @@ class Class;
 // Custom exception for rune parsing errors
 class RuneParseError : public std::runtime_error {
 public:
-    explicit RuneParseError(const std::string& message) : std::runtime_error(message) {}
+    explicit RuneParseError(const std::string& message, size_t line = 0, size_t column = 0) 
+        : std::runtime_error(formatError(message, line, column)),
+          line_(line),
+          column_(column) {}
+
+    size_t getLine() const { return line_; }
+    size_t getColumn() const { return column_; }
+
+private:
+    size_t line_;
+    size_t column_;
+    
+    static std::string formatError(const std::string& message, size_t line, size_t column) {
+        if (line == 0) return message;
+        return "Line " + std::to_string(line) + ", Column " + std::to_string(column) + ": " + message;
+    }
 };
 
 // Structure to represent a function
@@ -50,10 +65,17 @@ public:
     
 private:
     std::unordered_map<std::string, std::string> runeToKeyword;
+    size_t currentLine;
+    size_t currentColumn;
+    
     void initializeRuneMap();
     std::string handleFunction(const std::string& code, size_t& pos);
     std::string handleClass(const std::string& code, size_t& pos);
-    std::string handleVariableDeclaration(const std::string& code, size_t& pos);
+    std::string handleSwitch(const std::string& code, size_t& pos);
+    std::string handleString(const std::string& code, size_t& pos);
+    std::string handleComment(const std::string& code, size_t& pos);
+    void updatePosition(const std::string& code, size_t& pos);
+    void skipWhitespace(const std::string& code, size_t& pos);
 
     // Add new mappings for arrays and complex data types
     // Example: ᚨ for arrays, ᛚ for float arrays, ᛦ for double arrays

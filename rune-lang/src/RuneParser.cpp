@@ -4,7 +4,7 @@
 
 namespace RuneLang {
 
-RuneParser::RuneParser() {
+RuneParser::RuneParser() : currentLine(1), currentColumn(1) {
     initializeRuneMap();
 }
 
@@ -18,17 +18,22 @@ void RuneParser::initializeRuneMap() {
         {"ᚦ", "-"},             // Subtraction operator
         {"ᛉ", "while"},         // While-loop
         {"ᚨ", "std::vector<"},  // Array declaration
+        {"ᛜ", "std::cin >> "},  // Input from console
+        {"ᛝ", "std::string"},   // String type
+        {"ᛞ", "#"},             // Comment marker
+        {"ᛟ", "\""},            // String delimiter
+        {"ᛗ", "->"},            // Arrow operator
+        {"ᚹ", "*"},             // Multiplication
+        {"ᚺ", "/"},             // Division
+        {"ᚻ", "%"},             // Modulo
+        {"ᚼ", "<<"},            // Left shift
+        {"ᚽ", ">>"},            // Right shift
+        {"ᚾ", "&"},             // Bitwise AND
+        {"ᚿ", "|"},             // Bitwise OR
+        {"ᛀ", "^"},             // Bitwise XOR
+        {"ᛁ", "~"},             // Bitwise NOT
         {"ᛚ", "float"},         // Float array type
         {"ᛦ", "double"},        // Double array type
-        {"ᚨ", "else"},          // Else-condition
-        {"ᛃ", "="},             // Assignment operator
-        {"ᛇ", "!="},            // Not equal operator
-        {"ᛋ", "||"},            // Logical OR operator
-        {"ᛏ", "&&"},            // Logical AND operator
-        {"ᛒ", "{"},             // Start of block
-        {"ᛘ", "}"},             // End of block
-        {"ᛚ", "int"},           // Integer type
-        {"ᛦ", "float"},         // Float type
         {"ᛙ", "char"},          // Char type
         {"ᛠ", "double"},        // Double type
         {"ᛡ", "bool"},          // Boolean type
@@ -39,45 +44,76 @@ void RuneParser::initializeRuneMap() {
     };
 }
 
+void RuneParser::updatePosition(const std::string& code, size_t& pos) {
+    if (code[pos] == '\n') {
+        currentLine++;
+        currentColumn = 1;
+    } else {
+        currentColumn++;
+    }
+    pos++;
+}
+
+void RuneParser::skipWhitespace(const std::string& code, size_t& pos) {
+    while (pos < code.length() && std::isspace(code[pos])) {
+        updatePosition(code, pos);
+    }
+}
+
+std::string RuneParser::handleString(const std::string& code, size_t& pos) {
+    std::string result = "\"";
+    pos++; // Skip opening quote rune
+    
+    while (pos < code.length()) {
+        if (std::string(1, code[pos]) == "ᛟ") { // Check for closing quote
+            pos++;
+            break;
+        }
+        result += code[pos];
+        updatePosition(code, pos);
+    }
+    
+    return result + "\"";
+}
+
+std::string RuneParser::handleComment(const std::string& code, size_t& pos) {
+    std::string result = "//";
+    pos++; // Skip comment rune
+    
+    while (pos < code.length() && code[pos] != '\n') {
+        result += code[pos];
+        pos++;
+    }
+    
+    return result + "\n";
+}
+
 std::string RuneParser::parseRuneCode(const std::string& runeCode) {
     std::string parsedCode;
     size_t pos = 0;
-
+    
     try {
         while (pos < runeCode.length()) {
+            skipWhitespace(runeCode, pos);
+            if (pos >= runeCode.length()) break;
+            
             std::string runeStr(1, runeCode[pos]);
-
-            if (runeToKeyword.find(runeStr) != runeToKeyword.end()) {
-                if (runeStr == "ᛥ") {
-                    parsedCode += handleClass(runeCode, pos);
-                } else if (runeStr == "ᛤ" || runeStr == "ᛚ" || runeStr == "ᛦ" || 
-                         runeStr == "ᛙ" || runeStr == "ᛠ" || runeStr == "ᛡ") {
-                    parsedCode += handleFunction(runeCode, pos);
-                } else if (runeStr == "ᛚ") {
-                    parsedCode += handleCustomType(runeCode, pos);
-                    pos++; // increment pos after handling custom type
-                } else if (runeStr == "ᚹ") {
-                    parsedCode += handleSwitch(runeCode, pos);
-                } else {
-                    parsedCode += runeToKeyword[runeStr] + " ";
-                    pos++;
-                }
-            } else if (std::isspace(runeCode[pos])) {
-                parsedCode += runeCode[pos];
-                pos++;
+            
+            if (runeStr == "ᛟ") { // String
+                parsedCode += handleString(runeCode, pos);
+            } else if (runeStr == "ᛞ") { // Comment
+                parsedCode += handleComment(runeCode, pos);
+            } else if (runeToKeyword.find(runeStr) != runeToKeyword.end()) {
+                parsedCode += runeToKeyword[runeStr];
+                updatePosition(runeCode, pos);
             } else {
-                parsedCode += runeCode[pos];
-                pos++;
+                throw RuneParseError("Unknown rune symbol: " + runeStr, currentLine, currentColumn);
             }
         }
-    } catch (const RuneParseError& e) {
-        std::cerr << "Parse Error: " << e.what() << std::endl;
-        throw;
     } catch (const std::exception& e) {
-        std::cerr << "Unexpected error while parsing: " << e.what() << std::endl;
-        throw RuneParseError("Unexpected error while parsing: " + std::string(e.what()));
+        throw RuneParseError(e.what(), currentLine, currentColumn);
     }
-
+    
     return parsedCode;
 }
 
