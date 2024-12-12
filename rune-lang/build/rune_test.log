@@ -1,0 +1,32 @@
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:23 - GhostSystem initialized
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:34 - GhostSystem shut down
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:23 - GhostSystem initialized
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:105 - Process priority set to 10
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:114 - Process affinity set to 1
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:34 - GhostSystem shut down
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:23 - GhostSystem initialized
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:34 - GhostSystem shut down
+2024-12-12 14:15:18 [DEBUG] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneMonitor.hpp:115 - Metric test_metric = 42
+2024-12-12 14:15:18 [DEBUG] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneMonitor.hpp:115 - Metric test_metric = 42
+2024-12-12 14:15:18 [ERROR] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneError.hpp:24 - Exception: System error - Test error
+2024-12-12 14:15:18 [DEBUG] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:79 - Debug message
+2024-12-12 14:15:18 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:80 - Info message
+2024-12-12 14:15:18 [WARNING] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:81 - Warning message
+2024-12-12 14:15:18 [ERROR] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:82 - Error message
+2024-12-12 14:15:18 [CRITICAL] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:83 - Critical message
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:23 - GhostSystem initialized
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:34 - GhostSystem shut down
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:23 - GhostSystem initialized
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:105 - Process priority set to 10
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:114 - Process affinity set to 1
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:34 - GhostSystem shut down
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:23 - GhostSystem initialized
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp:34 - GhostSystem shut down
+2024-12-12 14:16:09 [DEBUG] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneMonitor.hpp:115 - Metric test_metric = 42
+2024-12-12 14:16:09 [DEBUG] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneMonitor.hpp:115 - Metric test_metric = 42
+2024-12-12 14:16:09 [ERROR] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneError.hpp:24 - Exception: System error - Test error
+2024-12-12 14:16:09 [DEBUG] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:79 - Debug message
+2024-12-12 14:16:09 [INFO] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:80 - Info message
+2024-12-12 14:16:09 [WARNING] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:81 - Warning message
+2024-12-12 14:16:09 [ERROR] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:82 - Error message
+2024-12-12 14:16:09 [CRITICAL] /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp:83 - Critical message

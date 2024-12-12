@@ -1,13 +1,12 @@
 #pragma once
 
 #include <string>
-#include <vector>
 #include <map>
 #include <mutex>
-#include <thread>
-#include <atomic>
-#include <functional>
 #include <chrono>
+#include <thread>
+#include <functional>
+#include <atomic>
 #include "RuneLogger.hpp"
 
 namespace RuneLang {
@@ -23,35 +22,64 @@ struct SystemMetrics {
 
 class RuneMonitor {
 public:
+    using MetricCallback = std::function<double()>;
+
     static RuneMonitor& getInstance() {
         static RuneMonitor instance;
         return instance;
     }
 
-    void start() {
-        if (!isRunning_) {
-            isRunning_ = true;
-            monitorThread_ = std::thread(&RuneMonitor::monitorLoop, this);
+    void registerMetric(const std::string& name, MetricCallback callback) {
+        std::lock_guard<std::mutex> lock(metricsMutex_);
+        metricCallbacks_[name] = callback;
+    }
+
+    void unregisterMetric(const std::string& name) {
+        std::lock_guard<std::mutex> lock(metricsMutex_);
+        metricCallbacks_.erase(name);
+    }
+
+    double getMetric(const std::string& name) const {
+        std::lock_guard<std::mutex> lock(metricsMutex_);
+        auto it = metricCallbacks_.find(name);
+        if (it != metricCallbacks_.end()) {
+            try {
+                return it->second();
+            } catch (const std::exception& e) {
+                LOG_ERROR("Error getting metric ", name, ": ", e.what());
+                return 0.0;
+            }
+        }
+        return 0.0;
+    }
+
+    void startMonitoring(std::chrono::milliseconds interval = std::chrono::seconds(1)) {
+        bool expected = false;
+        if (isRunning_.compare_exchange_strong(expected, true)) {
+            monitorThread_ = std::thread([this, interval]() {
+                while (isRunning_.load()) {
+                    try {
+                        updateMetrics();
+                        checkThresholds();
+                    } catch (const std::exception& e) {
+                        LOG_ERROR("Error in monitoring thread: ", e.what());
+                    }
+                    std::this_thread::sleep_for(interval);
+                }
+            });
         }
     }
 
-    void stop() {
-        if (isRunning_) {
-            isRunning_ = false;
+    void stopMonitoring() {
+        bool expected = true;
+        if (isRunning_.compare_exchange_strong(expected, false)) {
             if (monitorThread_.joinable()) {
                 monitorThread_.join();
             }
         }
     }
 
-    void addMetricCallback(const std::string& name, 
-                          std::function<double()> callback) {
-        std::lock_guard<std::mutex> lock(metricsMutex_);
-        metricCallbacks_[name] = callback;
-    }
-
-    void setThreshold(const std::string& metric, double threshold,
-                     std::function<void(double)> callback) {
+    void setThreshold(const std::string& metric, double threshold, std::function<void(double)> callback) {
         std::lock_guard<std::mutex> lock(metricsMutex_);
         thresholds_[metric] = {threshold, callback};
     }
@@ -63,19 +91,12 @@ public:
 
 private:
     RuneMonitor() : isRunning_(false) {}
-    ~RuneMonitor() { stop(); }
-
-    void monitorLoop() {
-        while (isRunning_) {
-            try {
-                updateMetrics();
-                checkThresholds();
-            } catch (const std::exception& e) {
-                LOG_ERROR("Error in monitoring thread: ", e.what());
-            }
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
+    ~RuneMonitor() {
+        stopMonitoring();
     }
+
+    RuneMonitor(const RuneMonitor&) = delete;
+    RuneMonitor& operator=(const RuneMonitor&) = delete;
 
     void updateMetrics() {
         std::lock_guard<std::mutex> lock(metricsMutex_);
@@ -91,6 +112,7 @@ private:
         for (const auto& [metricName, callback] : metricCallbacks_) {
             try {
                 currentMetrics_.customMetrics[metricName] = callback();
+                LOG_DEBUG("Metric ", metricName, " = ", currentMetrics_.customMetrics[metricName]);
             } catch (const std::exception& e) {
                 LOG_ERROR("Error updating metric ", metricName, ": ", e.what());
             }
@@ -115,8 +137,7 @@ private:
             }
 
             if (value > threshold.first) {
-                LOG_WARNING("Threshold exceeded for ", metric, 
-                           ": ", value, " > ", threshold.first);
+                LOG_WARNING("Threshold exceeded for ", metric, ": ", value, " > ", threshold.first);
                 threshold.second(value);
             }
         }
@@ -151,7 +172,7 @@ private:
     std::thread monitorThread_;
     mutable std::mutex metricsMutex_;
     SystemMetrics currentMetrics_;
-    std::map<std::string, std::function<double()>> metricCallbacks_;
+    std::map<std::string, MetricCallback> metricCallbacks_;
     std::map<std::string, std::pair<double, std::function<void(double)>>> thresholds_;
 };
 
