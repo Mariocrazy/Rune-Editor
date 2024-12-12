@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp
+../include/GhostSystem.hpp
 string
 -
 vector
@@ -14,11 +14,11 @@ vector
 memory
 -
 RuneSystem.hpp
-/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneSystem.hpp
+../include/RuneSystem.hpp
 RuneLogger.hpp
-/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneLogger.hpp
+../include/RuneLogger.hpp
 
-/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneLogger.hpp
+../include/RuneLogger.hpp
 string
 -
 fstream
@@ -36,7 +36,7 @@ ctime
 iomanip
 -
 
-/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/RuneSystem.hpp
+../include/RuneSystem.hpp
 string
 -
 vector
@@ -49,16 +49,8 @@ sys/types.h
 -
 
 /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/GhostSystem.cpp
-../include/GhostSystem.hpp
-/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/include/GhostSystem.hpp
-sys/statvfs.h
--
-sys/sysinfo.h
--
-unistd.h
--
-fcntl.h
--
-sys/mman.h
--
+GhostSystem.hpp
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/GhostSystem.hpp
+RuneLogger.hpp
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/src/RuneLogger.hpp
 

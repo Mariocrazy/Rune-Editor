@@ -11,8 +11,12 @@ string
 -
 vector
 -
+memory
+-
 RuneSystem.hpp
 ../include/RuneSystem.hpp
+RuneLogger.hpp
+../include/RuneLogger.hpp
 
 ../include/RuneError.hpp
 string
@@ -43,19 +47,17 @@ iomanip
 ../include/RuneMonitor.hpp
 string
 -
-vector
--
 map
 -
 mutex
 -
-thread
+chrono
 -
-atomic
+thread
 -
 functional
 -
-chrono
+atomic
 -
 RuneLogger.hpp
 ../include/RuneLogger.hpp

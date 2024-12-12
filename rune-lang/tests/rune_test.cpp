@@ -37,7 +37,8 @@ void testMemoryManagement() {
 
     size_t allocated = system.allocateMemory(1024);
     assert(allocated == 1024);
-    assert(system.getFreeMemory() >= 0);
+    // Check if free memory is at least the size we just freed
+    assert(system.getFreeMemory() >= allocated);
     system.freeMemory(allocated);
 
     system.shutdown();

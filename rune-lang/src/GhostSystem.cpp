@@ -1,187 +1,143 @@
-#include "../include/GhostSystem.hpp"
-#include <sys/statvfs.h>
-#include <sys/sysinfo.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/mman.h>
+#include "GhostSystem.hpp"
+#include "RuneLogger.hpp"
 
 namespace RuneLang {
 
-// GhostSystem Implementation
-bool GhostSystem::initializeSystem() {
-    // Initialize GhostC OS specific features
-    return true;
-}
-
-void GhostSystem::shutdownSystem() {
-    // Shutdown GhostC OS specific features
-}
-
-std::string GhostSystem::getSystemStatus() {
-    // Get GhostC OS status
-    return "Running";
-}
-
+// GhostSystem implementation
 bool GhostSystem::setSecurityLevel(const std::string& level) {
-    // Set GhostC OS security level
+    LOG_INFO("Setting security level to: ", level);
     return true;
 }
 
 std::string GhostSystem::getCurrentSecurityLevel() {
-    // Get current GhostC OS security level
     return "High";
 }
 
 bool GhostSystem::authenticateUser(const std::string& username, const std::string& password) {
-    // Authenticate user with GhostC OS
+    LOG_INFO("Authenticating user: ", username);
     return true;
 }
 
 size_t GhostSystem::getSystemLoad() {
-    struct sysinfo si;
-    if (sysinfo(&si) == 0) {
-        return si.loads[0];
-    }
+    LOG_INFO("Getting system load");
     return 0;
 }
 
 size_t GhostSystem::getNetworkUsage() {
-    // Get network usage from GhostC OS
-    return 0;
-}
-
-size_t GhostSystem::getDiskUsage() {
-    struct statvfs fs;
-    if (statvfs("/", &fs) == 0) {
-        return (fs.f_blocks - fs.f_bfree) * fs.f_frsize;
-    }
+    LOG_INFO("Getting network usage");
     return 0;
 }
 
 std::vector<std::string> GhostSystem::getLoadedModules() {
-    // Get list of loaded GhostC OS modules
+    LOG_INFO("Getting loaded modules");
     return std::vector<std::string>();
 }
 
 bool GhostSystem::loadGhostModule(const std::string& moduleName) {
-    // Load GhostC OS module
+    LOG_INFO("Loading Ghost module: ", moduleName);
     return true;
 }
 
 bool GhostSystem::unloadGhostModule(const std::string& moduleName) {
-    // Unload GhostC OS module
+    LOG_INFO("Unloading Ghost module: ", moduleName);
     return true;
-}
-
-std::string GhostSystem::getGhostVersion() {
-    return "1.0.0";
 }
 
 bool GhostSystem::updateGhostSystem() {
-    // Update GhostC OS
+    LOG_INFO("Updating Ghost system");
     return true;
 }
 
-// GhostProcess Implementation
-bool GhostProcess::setProcessPriority(int priority) {
-    // Set process priority in GhostC OS
-    return true;
-}
-
-bool GhostProcess::setProcessAffinity(const std::vector<int>& cpuList) {
-    // Set process CPU affinity in GhostC OS
-    return true;
-}
-
+// GhostProcess implementation
 bool GhostProcess::setProcessSecurity(const std::string& securityLevel) {
-    // Set process security level in GhostC OS
+    LOG_INFO("Setting process security level to: ", securityLevel);
     return true;
 }
 
 std::string GhostProcess::getProcessStatus() const {
-    // Get process status from GhostC OS
+    LOG_INFO("Getting process status");
     return "Running";
 }
 
 size_t GhostProcess::getProcessMemoryUsage() const {
-    // Get process memory usage from GhostC OS
+    LOG_INFO("Getting process memory usage");
     return 0;
 }
 
 bool GhostProcess::sendMessage(GhostProcess* target, const std::string& message) {
-    // Send IPC message in GhostC OS
+    LOG_INFO("Sending message to process: ", message);
     return true;
 }
 
 std::string GhostProcess::receiveMessage() {
-    // Receive IPC message in GhostC OS
+    LOG_INFO("Receiving message");
     return "";
 }
 
 bool GhostProcess::createSharedMemory(const std::string& name, size_t size) {
-    // Create shared memory segment in GhostC OS
+    LOG_INFO("Creating shared memory: ", name, " size: ", size);
     return true;
 }
 
 void* GhostProcess::mapSharedMemory(const std::string& name) {
-    // Map shared memory segment in GhostC OS
+    LOG_INFO("Mapping shared memory: ", name);
     return nullptr;
 }
 
 bool GhostProcess::setResourceLimit(const std::string& resource, size_t limit) {
-    // Set resource limit in GhostC OS
+    LOG_INFO("Setting resource limit: ", resource, "=", limit);
     return true;
 }
 
 size_t GhostProcess::getResourceUsage(const std::string& resource) const {
-    // Get resource usage from GhostC OS
+    LOG_INFO("Getting resource usage: ", resource);
     return 0;
 }
 
-// GhostFileSystem Implementation
+// GhostFileSystem implementation
 bool GhostFileSystem::mountGhostFS(const std::string& device, const std::string& mountPoint) {
-    // Mount GhostC OS specific filesystem
+    LOG_INFO("Mounting Ghost filesystem: ", device, " at ", mountPoint);
     return true;
 }
 
 bool GhostFileSystem::createGhostPartition(const std::string& device, size_t size) {
-    // Create GhostC OS specific partition
+    LOG_INFO("Creating Ghost partition on device: ", device, " with size: ", size);
     return true;
 }
 
 bool GhostFileSystem::encryptFile(const std::string& path, const std::string& key) {
-    // Encrypt file using GhostC OS encryption
+    LOG_INFO("Encrypting file: ", path);
     return true;
 }
 
 bool GhostFileSystem::decryptFile(const std::string& path, const std::string& key) {
-    // Decrypt file using GhostC OS encryption
+    LOG_INFO("Decrypting file: ", path);
     return true;
 }
 
 bool GhostFileSystem::setFileCompression(const std::string& path, const std::string& algorithm) {
-    // Set file compression in GhostC OS
+    LOG_INFO("Setting file compression for: ", path, " using algorithm: ", algorithm);
     return true;
 }
 
 bool GhostFileSystem::createHardLink(const std::string& source, const std::string& target) {
-    // Create hard link in GhostC OS
+    LOG_INFO("Creating hard link from: ", source, " to: ", target);
     return true;
 }
 
 bool GhostFileSystem::createSymLink(const std::string& source, const std::string& target) {
-    // Create symbolic link in GhostC OS
+    LOG_INFO("Creating symbolic link from: ", source, " to: ", target);
     return true;
 }
 
 bool GhostFileSystem::setExtendedAttribute(const std::string& path, const std::string& name,
-                                       const std::string& value) {
-    // Set extended attribute in GhostC OS
+                                         const std::string& value) {
+    LOG_INFO("Setting extended attribute: ", name, "=", value, " for: ", path);
     return true;
 }
 
 std::string GhostFileSystem::getExtendedAttribute(const std::string& path, const std::string& name) {
-    // Get extended attribute from GhostC OS
+    LOG_INFO("Getting extended attribute: ", name, " for: ", path);
     return "";
 }
 
