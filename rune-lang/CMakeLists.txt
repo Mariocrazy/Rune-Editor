@@ -3,20 +3,21 @@ project(RuneLang)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pthread")
 
-# Add source files
+# Source files
 set(SOURCES
     src/RuneParser.cpp
-    src/main.cpp
+    src/RuneSystem.cpp
+    src/GhostSystem.cpp
 )
 
-# Add header files
-set(HEADERS
-    include/RuneParser.hpp
-)
+# Include directories
+include_directories(include)
 
-# Create executable
-add_executable(rune_lang ${SOURCES} ${HEADERS})
+# Create the library
+add_library(runelang SHARED ${SOURCES})
 
-# Add include directories
-target_include_directories(rune_lang PRIVATE include)
+# Create test executable
+add_executable(rune_test tests/rune_test.cpp)
+target_link_libraries(rune_test runelang)

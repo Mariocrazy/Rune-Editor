@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 #include <stdexcept>
+#include "RuneSystem.hpp"
 
 namespace RuneLang {
 
@@ -74,59 +75,11 @@ private:
     std::string handleSwitch(const std::string& code, size_t& pos);
     std::string handleString(const std::string& code, size_t& pos);
     std::string handleComment(const std::string& code, size_t& pos);
+    std::string handleSystemCall(const std::string& code, size_t& pos);
+    std::string handleProcessManagement(const std::string& code, size_t& pos);
+    std::string handleFileOperation(const std::string& code, size_t& pos);
     void updatePosition(const std::string& code, size_t& pos);
     void skipWhitespace(const std::string& code, size_t& pos);
-
-    // Add new mappings for arrays and complex data types
-    // Example: ᚨ for arrays, ᛚ for float arrays, ᛦ for double arrays
-    // Update the runeToKeyword map accordingly.
-    void addArrayMappings() {
-        runeToKeyword["ᚨ"] = "std::vector<";  // Array declaration
-        runeToKeyword["ᛚ"] = "float";  // Float array type
-        runeToKeyword["ᛦ"] = "double";  // Double array type
-    }
-
-    // Add new mappings for switch statements
-    // Example: ᚹ for switch, ᚲ for case, ᛞ for default
-    void addSwitchMappings() {
-        runeToKeyword["ᚹ"] = "switch";  // Switch statement
-        runeToKeyword["ᚲ"] = "case";  // Case statement
-        runeToKeyword["ᛞ"] = "default";  // Default statement
-    }
-
-    void initializeRuneMap() {
-        runeToKeyword = {
-            {"ᚠ", "std::cout << "}, // Output to console
-            {"ᚱ", "for"},           // For-loop
-            {"ᚷ", "if"},            // If-condition
-            {"ᛏ", "return"},        // Return from function
-            {"ᚢ", "+"},             // Addition operator
-            {"ᚦ", "-"},             // Subtraction operator
-            {"ᛉ", "while"},         // While-loop
-            {"ᚨ", "std::vector<"},  // Array declaration
-            {"ᛚ", "float"},         // Float array type
-            {"ᛦ", "double"},        // Double array type
-            {"ᚹ", "switch"},        // Switch statement
-            {"ᚲ", "case"},          // Case statement
-            {"ᛞ", "default"},       // Default case
-            {"ᚨ", "else"},          // Else-condition
-            {"ᛃ", "="},             // Assignment operator
-            {"ᛇ", "!="},            // Not equal operator
-            {"ᛋ", "||"},            // Logical OR operator
-            {"ᛏ", "&&"},            // Logical AND operator
-            {"ᛒ", "{"},             // Start of block
-            {"ᛘ", "}"},             // End of block
-            {"ᛚ", "int"},           // Integer type
-            {"ᛦ", "float"},         // Float type
-            {"ᛙ", "char"},          // Char type
-            {"ᛠ", "double"},        // Double type
-            {"ᛡ", "bool"},          // Boolean type
-            {"ᛤ", "void"},          // Void return type
-            {"ᛥ", "class"},         // Class declaration
-            {"ᛦ", "namespace"},     // Namespace declaration
-            {"ᛧ", "struct"}         // Struct declaration
-        };
-    }
 };
 
 } // namespace RuneLang

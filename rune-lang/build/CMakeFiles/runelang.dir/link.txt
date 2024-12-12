@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -Wall -Wextra -pthread -shared -Wl,-soname,librunelang.so -o librunelang.so CMakeFiles/runelang.dir/src/RuneParser.cpp.o CMakeFiles/runelang.dir/src/RuneSystem.cpp.o CMakeFiles/runelang.dir/src/GhostSystem.cpp.o 

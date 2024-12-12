@@ -40,7 +40,20 @@ void RuneParser::initializeRuneMap() {
         {"ᛤ", "void"},          // Void return type
         {"ᛥ", "class"},         // Class declaration
         {"ᛦ", "namespace"},     // Namespace declaration
-        {"ᛧ", "struct"}         // Struct declaration
+        {"ᛧ", "struct"},        // Struct declaration
+        {"ᛨ", "RuneSystem::"},  // System operations prefix
+        {"ᛩ", "RuneProcess::"}, // Process operations prefix
+        {"ᛪ", "RuneThread::"},  // Thread operations prefix
+        {"᛫", "RuneFileSystem::"}, // File system operations prefix
+        {"᛬", "allocateMemory"}, // Allocate memory
+        {"ᛮ", "freeMemory"},     // Free memory
+        {"ᛯ", "createProcess"}, // Create new process
+        {"ᛰ", "createThread"}, // Create new thread
+        {"ᛱ", "terminate"},    // Terminate process/thread
+        {"ᛲ", "createFile"},    // Create file
+        {"ᛳ", "deleteFile"},    // Delete file
+        {"ᛴ", "readFile"},      // Read file
+        {"ᛵ", "writeFile"},     // Write file
     };
 }
 
@@ -88,6 +101,45 @@ std::string RuneParser::handleComment(const std::string& code, size_t& pos) {
     return result + "\n";
 }
 
+std::string RuneParser::handleSystemCall(const std::string& code, size_t& pos) {
+    std::string result = "RuneSystem::";
+    pos++; // Skip the system operation rune
+    
+    // Parse system call parameters
+    while (pos < code.length() && !std::isspace(code[pos])) {
+        result += code[pos];
+        updatePosition(code, pos);
+    }
+    
+    return result;
+}
+
+std::string RuneParser::handleProcessManagement(const std::string& code, size_t& pos) {
+    std::string result = "RuneProcess::";
+    pos++; // Skip the process operation rune
+    
+    // Parse process management parameters
+    while (pos < code.length() && !std::isspace(code[pos])) {
+        result += code[pos];
+        updatePosition(code, pos);
+    }
+    
+    return result;
+}
+
+std::string RuneParser::handleFileOperation(const std::string& code, size_t& pos) {
+    std::string result = "RuneFileSystem::";
+    pos++; // Skip the file operation rune
+    
+    // Parse file operation parameters
+    while (pos < code.length() && !std::isspace(code[pos])) {
+        result += code[pos];
+        updatePosition(code, pos);
+    }
+    
+    return result;
+}
+
 std::string RuneParser::parseRuneCode(const std::string& runeCode) {
     std::string parsedCode;
     size_t pos = 0;
@@ -103,6 +155,12 @@ std::string RuneParser::parseRuneCode(const std::string& runeCode) {
                 parsedCode += handleString(runeCode, pos);
             } else if (runeStr == "ᛞ") { // Comment
                 parsedCode += handleComment(runeCode, pos);
+            } else if (runeStr == "ᛨ") { // System call
+                parsedCode += handleSystemCall(runeCode, pos);
+            } else if (runeStr == "ᛩ") { // Process management
+                parsedCode += handleProcessManagement(runeCode, pos);
+            } else if (runeStr == "᛫") { // File operation
+                parsedCode += handleFileOperation(runeCode, pos);
             } else if (runeToKeyword.find(runeStr) != runeToKeyword.end()) {
                 parsedCode += runeToKeyword[runeStr];
                 updatePosition(runeCode, pos);

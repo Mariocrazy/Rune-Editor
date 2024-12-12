@@ -1,0 +1,92 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/GhostSystem.hpp
+string
+-
+vector
+-
+RuneSystem.hpp
+../include/RuneSystem.hpp
+
+../include/RuneError.hpp
+string
+-
+stdexcept
+-
+RuneLogger.hpp
+../include/RuneLogger.hpp
+
+../include/RuneLogger.hpp
+string
+-
+fstream
+-
+sstream
+-
+mutex
+-
+iostream
+-
+chrono
+-
+ctime
+-
+iomanip
+-
+
+../include/RuneMonitor.hpp
+string
+-
+vector
+-
+map
+-
+mutex
+-
+thread
+-
+atomic
+-
+functional
+-
+chrono
+-
+RuneLogger.hpp
+../include/RuneLogger.hpp
+
+../include/RuneSystem.hpp
+string
+-
+vector
+-
+functional
+-
+pthread.h
+-
+sys/types.h
+-
+
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/rune_test.cpp
+cassert
+-
+RuneError.hpp
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/RuneError.hpp
+RuneMonitor.hpp
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/RuneMonitor.hpp
+RuneLogger.hpp
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/RuneLogger.hpp
+GhostSystem.hpp
+/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/tests/GhostSystem.hpp
+iostream
+-
+thread
+-
+chrono
+-
+
