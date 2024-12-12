@@ -419,3 +419,31 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_ff9d7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ff9d7.dir/build.make CMakeFiles/cmTC_ff9d7.dir/build
+gmake[1]: Entering directory '/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ff9d7.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_ff9d7.dir/CheckIncludeFile.c.o -c "/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c"
+Linking C executable cmTC_ff9d7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ff9d7.dir/link.txt --verbose=1
+/usr/bin/cc CMakeFiles/cmTC_ff9d7.dir/CheckIncludeFile.c.o -o cmTC_ff9d7 
+gmake[1]: Leaving directory '/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_d3a66/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d3a66.dir/build.make CMakeFiles/cmTC_d3a66.dir/build
+gmake[1]: Entering directory '/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d3a66.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_d3a66.dir/CheckFunctionExists.c.o -c /usr/share/cmake-3.18/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d3a66
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d3a66.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_d3a66.dir/CheckFunctionExists.c.o -o cmTC_d3a66  -lpthread 
+gmake[1]: Leaving directory '/media/ghost/0F17-1D0C/ghost Sec/Rune-Editor/rune-lang/build/CMakeFiles/CMakeTmp'
+
+
+
