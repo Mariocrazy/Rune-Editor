@@ -1,0 +1,32 @@
+ᛞ File Operations Example
+ᛞ Demonstrates file system operations in GhostC OS
+
+ᛞ Create a new file
+ᚷ(ᛲ"test.txt") {
+    ᚠ"File created successfully\n"
+} ᚨ {
+    ᚠ"Error creating file\n"
+}
+
+ᛞ Write some content to the file
+ᛝ content ᛃ "Hello from GhostC OS!\nThis is a test file.\n"
+ᚷ(ᛵ"test.txt" content) {
+    ᚠ"Content written successfully\n"
+} ᚨ {
+    ᚠ"Error writing to file\n"
+}
+
+ᛞ Read and display file content
+ᛝ readContent ᛃ ᛴ"test.txt"
+ᚠ"File contents:\n" readContent "\n"
+
+ᛞ Get file information
+ᚠ"File size: " ᛫getFileSize("test.txt") " bytes\n"
+ᚠ"Last modified: " ᛫getLastModified("test.txt") "\n"
+
+ᛞ Delete the file
+ᚷ(ᛳ"test.txt") {
+    ᚠ"File deleted successfully\n"
+} ᚨ {
+    ᚠ"Error deleting file\n"
+}

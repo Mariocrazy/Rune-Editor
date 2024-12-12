@@ -1,0 +1,43 @@
+ᛞ Process Management Example
+ᛞ Demonstrates process and thread operations in GhostC OS
+
+ᛞ Create a new process
+ᛝ processName ᛃ "TestProcess"
+ᛩ newProcess ᛃ ᛯprocessName
+
+ᛞ Check if process was created successfully
+ᚷ(newProcess) {
+    ᚠ"Process created successfully\n"
+    
+    ᛞ Create a thread in the process
+    ᛪ newThread ᛃ ᛰ"WorkerThread"
+    
+    ᚷ(newThread) {
+        ᚠ"Thread created successfully\n"
+        
+        ᛞ Do some work in the thread
+        ᚱ(ᛚ i ᛃ 0; i < 5; i ᚢ 1) {
+            ᚠ"Thread iteration: " i "\n"
+            ᛨsleep(1000)  ᛞ Sleep for 1 second
+        }
+        
+        ᛞ Terminate the thread
+        ᛱnewThread
+        ᚠ"Thread terminated\n"
+    } ᚨ {
+        ᚠ"Error creating thread\n"
+    }
+    
+    ᛞ Terminate the process
+    ᛱnewProcess
+    ᚠ"Process terminated\n"
+} ᚨ {
+    ᚠ"Error creating process\n"
+}
+
+ᛞ List all running processes
+ᛝ processes ᛃ ᛨgetRunningProcesses()
+ᚠ"\nRunning Processes:\n"
+ᚱ(ᛚ i ᛃ 0; i < processes.size(); i ᚢ 1) {
+    ᚠprocesses[i].getName() " (PID: " processes[i].getPID() ")\n"
+}

@@ -1,0 +1,22 @@
+ᛞ System Information Display Program
+ᛞ This program shows various system information using GhostC OS system calls
+
+ᚠ"=== GhostC OS System Information ===\n\n"
+
+ᛞ Get and display OS information
+ᚠ"Operating System: " ᛨgetOSVersion() "\n"
+ᚠ"Hostname: " ᛨgetHostname() "\n"
+
+ᛞ Get and display CPU information
+ᚠ"CPU Cores: " ᛨgetCPUCount() "\n"
+
+ᛞ Get and display memory information
+ᛝ totalMem ᛃ ᛨgetTotalMemory()
+ᛝ availMem ᛃ ᛨgetAvailableMemory()
+
+ᚠ"Total Memory: " totalMem " bytes\n"
+ᚠ"Available Memory: " availMem " bytes\n"
+ᚠ"Memory Usage: " (totalMem - availMem) " bytes\n"
+
+ᛞ Display system uptime
+ᚠ"System Uptime: " ᛨgetUptime() " seconds\n"

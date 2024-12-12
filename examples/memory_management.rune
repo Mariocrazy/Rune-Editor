@@ -1,0 +1,38 @@
+ᛞ Memory Management Example
+ᛞ Demonstrates memory operations in GhostC OS
+
+ᛞ Display initial memory state
+ᚠ"Initial available memory: " ᛨgetAvailableMemory() " bytes\n"
+
+ᛞ Allocate memory
+ᛚ blockSize ᛃ 1024 ᚹ 1024  ᛞ 1MB
+ᛝ memBlock ᛃ ᛬blockSize
+
+ᛞ Check if allocation was successful
+ᚷ(memBlock) {
+    ᚠ"Successfully allocated " blockSize " bytes\n"
+    
+    ᛞ Display memory state after allocation
+    ᚠ"Available memory after allocation: " ᛨgetAvailableMemory() " bytes\n"
+    
+    ᛞ Use the allocated memory
+    ᚱ(ᛚ i ᛃ 0; i < 10; i ᚢ 1) {
+        memBlock[i] ᛃ i
+    }
+    
+    ᛞ Free the memory
+    ᛮmemBlock
+    ᚠ"Memory freed\n"
+    
+    ᛞ Display final memory state
+    ᚠ"Available memory after freeing: " ᛨgetAvailableMemory() " bytes\n"
+} ᚨ {
+    ᚠ"Error allocating memory\n"
+}
+
+ᛞ Memory protection example
+ᚷ(ᛨsetMemoryProtection(memBlock, blockSize, "READ_WRITE")) {
+    ᚠ"Memory protection set successfully\n"
+} ᚨ {
+    ᚠ"Error setting memory protection\n"
+}
