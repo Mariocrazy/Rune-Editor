@@ -1,0 +1,8 @@
+{
+    "setBreakpoint": "F9",
+    "removeBreakpoint": "F10",
+    "stepOver": "F11",
+    "stepInto": "F12",
+    "runCode": "Ctrl+Enter",
+    "toggleTerminal": "Ctrl+T"
+}
